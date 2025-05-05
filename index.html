@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Wisher</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 5px #000;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    input {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 80%;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      outline: none;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff6f61;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff3b2e;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Birthday Wisher</h1>
+  <div class="card">
+    <input type="text" id="nameInput" placeholder="Apna naam daalo..." />
+    <input type="number" id="birthYearInput" placeholder="Janam saal daalo (e.g. 2000)" />
+    <br>
+    <button onclick="wishBirthday()">Wish Me!</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function wishBirthday() {
+      const name = document.getElementById('nameInput').value.trim();
+      const birthYear = parseInt(document.getElementById('birthYearInput').value.trim());
+      const messageDiv = document.getElementById('message');
+
+      if (name === "" || isNaN(birthYear)) {
+        messageDiv.textContent = "Naam aur janam saal dono daalo bhai!";
+        return;
+      }
+
+      const currentYear = new Date().getFullYear();
+      const age = currentYear - birthYear;
+
+      if (age < 0 || age > 120) {
+        messageDiv.textContent = "Janam saal theek se daalo, Elon Musk bhi itne future se nahi aaya!";
+        return;
+      }
+
+      messageDiv.textContent = `Happy Birthday, ${name}! Aaj tum ${age} saal ke ho gaye ho! 🎉🎂`;
+    }
+  </script>
+</body>
+</html>
